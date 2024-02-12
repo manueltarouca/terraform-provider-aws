@@ -50,6 +50,9 @@ This data source exports the following attributes in addition to the arguments a
 
 * `id` - Name of the cluster
 * `arn` - ARN of the cluster.
+* `access_config` - Configuration block for access config.
+    * `authentication_mode` - Values returned are `CONFIG_MAP`, `API` or `API_AND_CONFIG_MAP`
+    * `bootstrap_cluster_creator_admin_permissions` - Default to `true`.
 * `certificate_authority` - Nested attribute containing `certificate-authority-data` for your cluster.
     * `data` - The base64 encoded certificate data required to communicate with your cluster. Add this to the `certificate-authority-data` section of the `kubeconfig` file for your cluster.
 * `cluster_id` - The ID of your local Amazon EKS cluster on the AWS Outpost. This attribute isn't available for an AWS EKS cluster on AWS cloud.
@@ -82,4 +85,4 @@ This data source exports the following attributes in addition to the arguments a
     * `subnet_ids` – List of subnet IDs
     * `vpc_id` – The VPC associated with your cluster.
 
-<!-- cache-key: cdktf-0.20.1 input-c6c973609d8849dfdbe288511dbb8b53a13192e5d23e4a6f41498b65a5c39508 -->
+<!-- cache-key: cdktf-0.20.1 input-bfa3ab168e2f2fc79f1f8bc8ff2edc27a70bfb5695e88b0d57357763b7a47db0 -->
