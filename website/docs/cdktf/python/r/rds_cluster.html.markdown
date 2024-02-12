@@ -151,6 +151,9 @@ class MyConvertedCode(TerraformStack):
 
 -> More information about RDS Serverless v2 Clusters can be found in the [RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html).
 
+~> **Note:** Unlike Serverless v1, in Serverless v2 the `storage_encrypted` value is set to `false` by default.
+This is because Serverless v1 uses the `serverless` `engine_mode`, but Serverless v2 uses the `provisioned` `engine_mode`.
+
 To create a Serverless v2 RDS cluster, you must additionally specify the `engine_mode` and `serverlessv2_scaling_configuration` attributes. An `aws_rds_cluster_instance` resource must also be added to the cluster with the `instance_class` attribute specified.
 
 ```python
@@ -177,7 +180,8 @@ class MyConvertedCode(TerraformStack):
             serverlessv2_scaling_configuration=RdsClusterServerlessv2ScalingConfiguration(
                 max_capacity=1,
                 min_capacity=0.5
-            )
+            ),
+            storage_encrypted=True
         )
         aws_rds_cluster_instance_example = RdsClusterInstance(self, "example_1",
             cluster_identifier=example.id,
@@ -568,4 +572,4 @@ Using `terraform import`, import RDS Clusters using the `cluster_identifier`. Fo
 % terraform import aws_rds_cluster.aurora_cluster aurora-prod-cluster
 ```
 
-<!-- cache-key: cdktf-0.20.1 input-56e3cd15ab5874108e89fa2a156fd6216384947b47fe548382d9fdb5ef543131 -->
+<!-- cache-key: cdktf-0.20.1 input-d7346a82a40651d795779226e84f67eb626824ae3a483ab18e16360480772540 -->

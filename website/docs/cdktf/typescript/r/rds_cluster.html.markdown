@@ -166,6 +166,9 @@ class MyConvertedCode extends TerraformStack {
 
 -> More information about RDS Serverless v2 Clusters can be found in the [RDS User Guide](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless-v2.html).
 
+~> **Note:** Unlike Serverless v1, in Serverless v2 the `storageEncrypted` value is set to `false` by default.
+This is because Serverless v1 uses the `serverless` `engineMode`, but Serverless v2 uses the `provisioned` `engineMode`.
+
 To create a Serverless v2 RDS cluster, you must additionally specify the `engineMode` and `serverlessv2ScalingConfiguration` attributes. An `aws_rds_cluster_instance` resource must also be added to the cluster with the `instanceClass` attribute specified.
 
 ```typescript
@@ -193,6 +196,7 @@ class MyConvertedCode extends TerraformStack {
         maxCapacity: 1,
         minCapacity: 0.5,
       },
+      storageEncrypted: true,
     });
     const awsRdsClusterInstanceExample = new RdsClusterInstance(
       this,
@@ -633,4 +637,4 @@ Using `terraform import`, import RDS Clusters using the `clusterIdentifier`. For
 % terraform import aws_rds_cluster.aurora_cluster aurora-prod-cluster
 ```
 
-<!-- cache-key: cdktf-0.20.1 input-56e3cd15ab5874108e89fa2a156fd6216384947b47fe548382d9fdb5ef543131 -->
+<!-- cache-key: cdktf-0.20.1 input-d7346a82a40651d795779226e84f67eb626824ae3a483ab18e16360480772540 -->
